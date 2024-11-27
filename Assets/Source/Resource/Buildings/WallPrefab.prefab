@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4597108815840388709}
+  - component: {fileID: 5761932101381783412}
   - component: {fileID: 7766171524953779006}
   - component: {fileID: 4592859939468299483}
   m_Layer: 0
@@ -118,6 +119,20 @@ Transform:
   - {fileID: 8987929566628365962}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5761932101381783412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6523194763953511954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ce3fa66e482bd459eccd161abc05cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HookedEntity: {fileID: 0}
+  isSelected: 0
 --- !u!114 &7766171524953779006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,10 +145,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705fc6f5caa57dd4fa9da012b32b7e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sr: {fileID: 141336128771002461}
+  mTickableComponents: []
+  mSelectable: {fileID: 5761932101381783412}
+  entityType: 0
+  staticEntityType: 0
   Id: 0
-  BuildingRenderer: {fileID: 141336128771002461}
-  IsSelected: 0
   Info: {fileID: 11400000, guid: 6024a875dd4083443bc68376041388f1, type: 2}
+  Stats:
+    HP: 0
+    AttackRange: 0
+    Attack: 0
+    Armor: 0
+    GridFlag: 
 --- !u!61 &4592859939468299483
 BoxCollider2D:
   m_ObjectHideFlags: 0

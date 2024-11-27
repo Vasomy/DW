@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Farmer : ControllableUnits
 {
+
     public override void OnUpdate()
     {
         base.OnUpdate();
+    }
+
+    public override void OnTrigger(Vector2 cursorPos)
+    {
+        base.OnTrigger(cursorPos);
+
     }
 
 }

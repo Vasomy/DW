@@ -19,7 +19,7 @@ public class BuildHandle :MonoBehaviour
             mBuildingsPrefabs.Add(bdName, bp);  
         }
     }
-
+    static public BuildingsInfo currentBuildingsInfo;
     public void Generate(string name)
     {
         if (name == null) return;
@@ -35,14 +35,13 @@ public class BuildHandle :MonoBehaviour
         }
         if (!GridManager.CanBuild()) return;
         var prefab = mBuildingsPrefabs[name];
+        currentBuildingsInfo = GameRuntimeContext.instance.GetBuildingInfo(name);
         var go = Instantiate(prefab,GenerateTarget);
         go.name += name;
         Vector3 pos = GameRuntimeContext.instance.mBuildPreview.transform.position;
         pos = GridManager.TransPos(pos);
         go.transform.position = pos;
         var Building = go.GetComponentInChildren<Buildings>();
-        var info = GameRuntimeContext.instance.GetBuildingInfo(name);
-        Building.Init(info);
 
         GameRuntimeContext.instance.mBuildingsStorge.Insert(Building.Id, go);
     }

@@ -44,6 +44,12 @@ public class ControllableUnits : Entity
             }
         }
     }
+
+    public virtual void OnTrigger(Vector2 cursorPos)
+        // 触发事件（当该实体被选中时触发右键）
+    {
+
+    }
     public virtual void OnInit()
     {
         mSelectable.Hook(this);

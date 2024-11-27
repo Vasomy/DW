@@ -16,9 +16,11 @@ public class BeanJamGod : MonoBehaviour
         Holding
     }
 
+    States states = States.Idle;
+
     private void Update()
     {
-        
+             
     }
 
 

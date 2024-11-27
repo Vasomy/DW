@@ -6,21 +6,20 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class Buildings : MonoBehaviour
+public class Buildings : StaticEntity
     // 所有的建筑本质上为一个带碰撞的矩形
     // 所有的建筑（如果在地面上）都会占据某些地块（被占据的地块无法进行路径检测）
     // 该脚本应该被挂载到GameObject并存为Prefab
     // 当该脚本所挂载的Prefab被Instantiated时，
 
     // AsBuilt()作为被建造，在建造模式中建造建筑时，被以这种方法初始化
+
+   
 {
 
     public int Id; // 唯一id作为查找的key值
 
-    public SpriteRenderer BuildingRenderer;//建筑的Sprite渲染器
     // 可能 还会有一些 背景 轮廓线的渲染器-- 暂时没有实现
-
-    public bool IsSelected = false;// 在选择模式下或者游戏进行时点击目标建筑
 
     public Vector2 Origin => transform.position;// 建筑中心
     public BuildingsInfo Info;
@@ -40,11 +39,16 @@ public class Buildings : MonoBehaviour
     }
     public BuildingStats Stats = new BuildingStats();
 
-    public void Init(BuildingsInfo _Info)
+    public override void OnInit()
+    {
+        base.OnInit();
+        Init();
+    }
+    public void Init()
     {
         gameObject.tag = "Buildings";
         Id = UIdAllocator.Instance.AllocateId();
-        this.Info = _Info;
+        this.Info = BuildHandle.currentBuildingsInfo;
 
         Stats.HP = Info.HP;
         Stats.AttackRange = Info.Radius;
@@ -55,9 +59,9 @@ public class Buildings : MonoBehaviour
             Stats.GridFlag.Add(0);
         }
         
-        BuildingRenderer.sprite = SpriteManager.instance.GetSprite(Info.BuildingName);
+        m_sr.sprite = SpriteManager.instance.GetSprite(Info.BuildingName);
         LoadComponent();
-        Debug.Log(_Info.BuildingName);
+        Debug.Log(Info.BuildingName);
         CalculateOccupyGrid();
     }
 
